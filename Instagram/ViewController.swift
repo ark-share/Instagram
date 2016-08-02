@@ -6,6 +6,10 @@
 //  Copyright © 2016年 hiroshi.ohara. All rights reserved.
 //
 
+
+import Firebase
+//import FirebaseAuth なくていい
+
 import UIKit
 import ESTabBarController
 
@@ -14,9 +18,32 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupTab()
-    
+        //setupTab()
     }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+    
+        
+        if let user = FIRAuth.auth()?.currentUser {
+//            let name = user.displayName
+//            let email = user.email
+//            let photoUrl = user.photoURL
+//            let uid = user.uid
+            
+            setupTab()
+        }
+        else {
+            print("No user is signed in.")
+            // メソッドが終了してから呼ぶ方法
+            dispatch_async(dispatch_get_main_queue()) {
+                let loginViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Login")
+                self.presentViewController(loginViewController!, animated: true, completion: nil) // モーダルで表示
+            }
+        }
+        
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
