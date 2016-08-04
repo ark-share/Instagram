@@ -24,9 +24,6 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     
-        // sign out
-        //try! FIRAuth.auth()?.signOut()
-        
         if FIRAuth.auth()?.currentUser != nil { //let user =
 //            let name = user.displayName // String?
 //            let email = user.email // String?

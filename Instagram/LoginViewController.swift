@@ -37,7 +37,7 @@ class LoginViewController: UIViewController {
                 } else {
                     // Firebaseからログインユーザの表示名を取得
                     if let displayName = user?.displayName {
-                        self.setDisplayName(displayName)
+                        AppController().setDisplayName(displayName)
                     }
                     
                     // HUDを消す
@@ -87,7 +87,7 @@ class LoginViewController: UIViewController {
                                     if error != nil {
                                         print(error)
                                     } else {
-                                        self.setDisplayName(displayName)
+                                        AppController().setDisplayName(displayName)
                                         
                                         // HUDを消す
                                         SVProgressHUD.dismiss()
@@ -113,7 +113,11 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // default
+        mailAddressTextField.text = "bbb@bbb.com"
+        passwordTextField.text = "bbbbbb"
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -122,11 +126,5 @@ class LoginViewController: UIViewController {
     }
     
 
-    // 表示名の保存
-    func setDisplayName(name: String) {
-        let ud = NSUserDefaults.standardUserDefaults()
-        ud.setValue(name, forKey: CommonConst.DisplayNameKey)
-        ud.synchronize()
-    }
     
 }
