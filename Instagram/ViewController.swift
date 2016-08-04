@@ -24,14 +24,19 @@ class ViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
     
+        // sign out
+        //try! FIRAuth.auth()?.signOut()
         
-        if let user = FIRAuth.auth()?.currentUser {
-//            let name = user.displayName
-//            let email = user.email
-//            let photoUrl = user.photoURL
-//            let uid = user.uid
-            
+        if FIRAuth.auth()?.currentUser != nil { //let user =
+//            let name = user.displayName // String?
+//            let email = user.email // String?
+//            let photoUrl = user.photoURL // NSURL?
+//            let uid = user.uid // String
+//            print(name! + " " + email! + " " + uid)
+
             setupTab()
+            
+
         }
         else {
             print("No user is signed in.")
@@ -74,7 +79,7 @@ class ViewController: UIViewController {
             let imageViewController = self.storyboard?.instantiateViewControllerWithIdentifier("ImageSelect")
             self.presentViewController(imageViewController!, animated: true, completion: nil)
             
-            }, atIndex: 2)
+            }, atIndex: 1)
     }
 
 }

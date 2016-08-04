@@ -18,6 +18,7 @@
 		A38BED071D40D43A00A35E81 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38BED061D40D43A00A35E81 /* PostViewController.swift */; };
 		A38BED091D40D44800A35E81 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38BED081D40D44800A35E81 /* SettingViewController.swift */; };
 		A3A48B7D1D5072D600277CCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A3A48B7C1D5072D600277CCB /* GoogleService-Info.plist */; };
+		A3A48B7F1D507D0300277CCB /* ButtonCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3A48B7E1D507D0300277CCB /* ButtonCustom.swift */; };
 		A3E04F721D506261001A1B38 /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E04F711D506261001A1B38 /* Const.swift */; };
 		BC3651A5F5E150B6E635F2F7 /* Pods_Instagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EAD3B41B73D7BFBE022DB74 /* Pods_Instagram.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +40,7 @@
 		A38BED061D40D43A00A35E81 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		A38BED081D40D44800A35E81 /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A3A48B7C1D5072D600277CCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A3A48B7E1D507D0300277CCB /* ButtonCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonCustom.swift; sourceTree = "<group>"; };
 		A3E04F711D506261001A1B38 /* Const.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,18 +97,27 @@
 				A3A48B7C1D5072D600277CCB /* GoogleService-Info.plist */,
 				A38BECEE1D40D14E00A35E81 /* AppDelegate.swift */,
 				A3E04F711D506261001A1B38 /* Const.swift */,
-				A38BECF01D40D14E00A35E81 /* ViewController.swift */,
 				A38BECF21D40D14E00A35E81 /* Main.storyboard */,
+				A3A48B7E1D507D0300277CCB /* ButtonCustom.swift */,
 				A38BECF51D40D14E00A35E81 /* Assets.xcassets */,
+				A3A48B801D517C7600277CCB /* Controller */,
+				A38BECF71D40D14E00A35E81 /* LaunchScreen.storyboard */,
+				A38BECFA1D40D14E00A35E81 /* Info.plist */,
+			);
+			path = Instagram;
+			sourceTree = "<group>";
+		};
+		A3A48B801D517C7600277CCB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A38BECF01D40D14E00A35E81 /* ViewController.swift */,
 				A38BED001D40D3F000A35E81 /* LoginViewController.swift */,
 				A38BED021D40D42000A35E81 /* HomeViewController.swift */,
 				A38BED041D40D43100A35E81 /* ImageSelectViewController.swift */,
 				A38BED061D40D43A00A35E81 /* PostViewController.swift */,
 				A38BED081D40D44800A35E81 /* SettingViewController.swift */,
-				A38BECF71D40D14E00A35E81 /* LaunchScreen.storyboard */,
-				A38BECFA1D40D14E00A35E81 /* Info.plist */,
 			);
-			path = Instagram;
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,6 +246,7 @@
 				A38BED071D40D43A00A35E81 /* PostViewController.swift in Sources */,
 				A38BED011D40D3F000A35E81 /* LoginViewController.swift in Sources */,
 				A38BECF11D40D14E00A35E81 /* ViewController.swift in Sources */,
+				A3A48B7F1D507D0300277CCB /* ButtonCustom.swift in Sources */,
 				A38BECEF1D40D14E00A35E81 /* AppDelegate.swift in Sources */,
 				A38BED051D40D43100A35E81 /* ImageSelectViewController.swift in Sources */,
 				A3E04F721D506261001A1B38 /* Const.swift in Sources */,

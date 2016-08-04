@@ -10,10 +10,21 @@ import UIKit
 
 class SettingViewController: UIViewController {
 
+    @IBOutlet weak var displayNameTextField: UITextField!
+    
+    @IBAction func handleChangeButton(sender: AnyObject) {
+    }
+    
+    @IBAction func handleLogoutButton(sender: AnyObject) {
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let ud = NSUserDefaults.standardUserDefaults()
+        let name = ud.objectForKey(CommonConst.DisplayNameKey) as! String
+
+        displayNameTextField.text = name
     }
 
     override func didReceiveMemoryWarning() {
