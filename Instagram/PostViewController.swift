@@ -10,6 +10,8 @@ import UIKit
 
 class PostViewController: UIViewController {
 
+    var image: UIImage!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

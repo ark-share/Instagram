@@ -149,7 +149,61 @@
                     <view key="view" contentMode="scaleToFill" id="Ya2-UQ-lHC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oYY-5K-XkB">
+                                <rect key="frame" x="150" y="80" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="ohv-sx-WDO"/>
+                                </constraints>
+                                <state key="normal" title="写真ライブラリ" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handleLibraryButton:" destination="rgE-oP-3pc" eventType="touchUpInside" id="0zN-0n-WqM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRz-9t-qJ8">
+                                <rect key="frame" x="150" y="130" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="5ao-vL-pwy"/>
+                                </constraints>
+                                <state key="normal" title="カメラ起動" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handleCameraButton:" destination="rgE-oP-3pc" eventType="touchUpInside" id="3PJ-iX-BCR"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0PM-zq-Fap" customClass="ButtonCustom" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="150" y="180" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Lw0-2k-ihm"/>
+                                    <constraint firstAttribute="width" constant="300" id="gaV-42-1Eg"/>
+                                </constraints>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="handleCancelButton:" destination="rgE-oP-3pc" eventType="touchUpInside" id="GBP-Ke-oqb"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0PM-zq-Fap" firstAttribute="top" secondItem="nRz-9t-qJ8" secondAttribute="bottom" constant="10" id="3nm-eb-fyS"/>
+                            <constraint firstItem="oYY-5K-XkB" firstAttribute="centerX" secondItem="Ya2-UQ-lHC" secondAttribute="centerX" id="Ngh-Nc-IXb"/>
+                            <constraint firstItem="nRz-9t-qJ8" firstAttribute="centerX" secondItem="Ya2-UQ-lHC" secondAttribute="centerX" id="X57-vD-SbN"/>
+                            <constraint firstItem="0PM-zq-Fap" firstAttribute="centerX" secondItem="Ya2-UQ-lHC" secondAttribute="centerX" id="aVi-S9-dTe"/>
+                            <constraint firstItem="nRz-9t-qJ8" firstAttribute="top" secondItem="oYY-5K-XkB" secondAttribute="bottom" constant="10" id="eF0-Ls-yEM"/>
+                            <constraint firstItem="oYY-5K-XkB" firstAttribute="top" secondItem="R2x-Qw-jKj" secondAttribute="bottom" constant="60" id="qmu-E6-dYW"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TLr-DF-6h2" userLabel="First Responder" sceneMemberID="firstResponder"/>

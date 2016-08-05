@@ -18,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         FIRApp.configure() // Firebase
+        
+        // deprecated
+//        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(CommonConst.AdobeClientID, clientSecret: CommonConst.AdobeSecret, enableSignUp: false)
+        AdobeUXAuthManager.sharedManager().setAuthenticationParametersWithClientID(CommonConst.AdobeClientID, withClientSecret: CommonConst.AdobeSecret)
+        
         return true
     }
 
