@@ -51,7 +51,8 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     
     // 画像を選択
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-        SVProgressHUD.showSuccessWithStatus("ImageEditorを開きます")
+        
+        SVProgressHUD.showSuccessWithStatus("Imageを選択")
         
         if info[UIImagePickerControllerOriginalImage] != nil {
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
@@ -75,7 +76,7 @@ class ImageSelectViewController: UIViewController, UIImagePickerControllerDelega
     func photoEditor(editor: AdobeUXImageEditorViewController, finishedWithImage image: UIImage?) {
         editor.dismissViewControllerAnimated(true, completion: nil) // 閉じる
         
-        // 投稿画面を開く
+        // 投稿画面をモーダルで開く
         let postViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Post") as! PostViewController
         postViewController.image = image
         presentViewController(postViewController, animated: true, completion: nil)

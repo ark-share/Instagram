@@ -60,9 +60,7 @@ class SettingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let ud = NSUserDefaults.standardUserDefaults()
-        let name = ud.objectForKey(CommonConst.DisplayNameKey) as! String
-
+        let name = AppController().getDisplayName()
         displayNameTextField.text = name
     }
 

@@ -13,11 +13,16 @@ import UIKit
 class AppController {
     
     
-    // 表示名の保存
+    // 表示名
     func setDisplayName(name: String) {
         let ud = NSUserDefaults.standardUserDefaults()
         ud.setValue(name, forKey: CommonConst.DisplayNameKey)
         ud.synchronize()
+    }
+    func getDisplayName() -> String {
+        let ud = NSUserDefaults.standardUserDefaults()
+        let name = ud.objectForKey(CommonConst.DisplayNameKey) as! String
+        return name
     }
     
     func openModal(controller: UIViewController, name: String) {

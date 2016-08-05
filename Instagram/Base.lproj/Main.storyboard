@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -221,8 +222,71 @@
                     <view key="view" contentMode="scaleToFill" id="Zqe-ti-q5c">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YPL-V5-Rfx">
+                                <rect key="frame" x="20" y="40" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="38V-ox-9OS"/>
+                                    <constraint firstAttribute="width" constant="120" id="zt7-NQ-tC3"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hb7-HP-pLW">
+                                <rect key="frame" x="150" y="180" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="L6x-Cg-WHz"/>
+                                </constraints>
+                                <state key="normal" title="投稿" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handlePostButton:" destination="ivO-DR-tai" eventType="touchUpInside" id="bYv-TS-hRa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ULi-hw-mmk" customClass="ButtonCustom" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="150" y="230" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="BPd-el-Oer"/>
+                                    <constraint firstAttribute="height" constant="40" id="BmU-L5-Hyg"/>
+                                </constraints>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="handleCancelButton:" destination="ivO-DR-tai" eventType="touchUpInside" id="XaO-vD-eGe"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="キャプション" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="66o-Gy-VrE">
+                                <rect key="frame" x="150" y="130" width="430" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Hb7-HP-pLW" firstAttribute="top" secondItem="66o-Gy-VrE" secondAttribute="bottom" constant="20" id="1za-3u-MYP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="66o-Gy-VrE" secondAttribute="trailing" id="4nS-KA-mEb"/>
+                            <constraint firstItem="66o-Gy-VrE" firstAttribute="bottom" secondItem="YPL-V5-Rfx" secondAttribute="bottom" id="5yH-qt-otL"/>
+                            <constraint firstItem="YPL-V5-Rfx" firstAttribute="leading" secondItem="Zqe-ti-q5c" secondAttribute="leadingMargin" id="B6B-Pz-feC"/>
+                            <constraint firstItem="66o-Gy-VrE" firstAttribute="leading" secondItem="YPL-V5-Rfx" secondAttribute="trailing" constant="10" id="Ktq-6s-WLQ"/>
+                            <constraint firstItem="YPL-V5-Rfx" firstAttribute="top" secondItem="nfz-e4-sna" secondAttribute="bottom" constant="20" id="ZIh-sz-PTS"/>
+                            <constraint firstItem="ULi-hw-mmk" firstAttribute="top" secondItem="Hb7-HP-pLW" secondAttribute="bottom" constant="10" id="ff7-OF-SKL"/>
+                            <constraint firstItem="ULi-hw-mmk" firstAttribute="centerX" secondItem="Zqe-ti-q5c" secondAttribute="centerX" id="oeb-EA-fzo"/>
+                            <constraint firstItem="Hb7-HP-pLW" firstAttribute="centerX" secondItem="Zqe-ti-q5c" secondAttribute="centerX" id="uHD-5n-rRE"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageVew" destination="YPL-V5-Rfx" id="yFe-mY-7t3"/>
+                        <outlet property="textField" destination="66o-Gy-VrE" id="bbO-Bb-6CB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d5C-Xg-Rcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
