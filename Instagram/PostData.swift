@@ -23,7 +23,7 @@ class PostData: NSObject {
     init(snapshot: FIRDataSnapshot, myId: String) {
         id = snapshot.key
         
-        let valueDic = snapshot.value as! [String: AnyObject]
+        let valueDic = snapshot.value as! [String: AnyObject] // [Key: Value]の型のこと
         
         imageString = valueDic["image"] as? String
         image = UIImage(data: NSData(base64EncodedString: imageString!, options: .IgnoreUnknownCharacters)!)
