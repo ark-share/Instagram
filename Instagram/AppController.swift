@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-// AppController.setXX()はダメで、AppController().setXX()なら参照できた
-class AppController {
+class AppController: NSObject {
     
     
     // 表示名

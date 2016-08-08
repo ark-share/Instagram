@@ -45,7 +45,6 @@ class LoginViewController: UIViewController {
                     
                     // 次はViewControllerの viewDisAppear:へ
                     self.dismissViewControllerAnimated(true, completion: nil) // 画面閉じる
-                    
                 }
             })
             

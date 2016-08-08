@@ -29,7 +29,7 @@ class PostViewController: UIViewController {
         
         let time = NSDate.timeIntervalSinceReferenceDate() // 現在時刻
         
-        let postData =  [
+        let postData = [
             "caption": textField.text!,
             "image": imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength), // テキストで保存
             "name": name,
