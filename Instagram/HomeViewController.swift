@@ -87,7 +87,11 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // セルのActionをコード上で設定する action:"handleButton:event:"
 //        cell.likeButton.addTarget(self,  action:"handleButton:event:", forControlEvents: UIControlEvents.TouchUpInside)
         
-        cell.likeButton.addTarget(self, action: #selector(HomeViewController.handleButton(_:event:)), forControlEvents:  UIControlEvents.TouchUpInside)
+        // いいねアクションを設定する
+        cell.likeButton.addTarget(self, action: #selector(HomeViewController.handleLikeButton(_:event:)), forControlEvents:  UIControlEvents.TouchUpInside)
+        // コメントアクション
+        cell.commentButton.addTarget(self, action: #selector(HomeViewController.handleCommentButton(_:event:)), forControlEvents:  UIControlEvents.TouchUpInside)
+        
         
         cell.layoutIfNeeded()
         return cell
@@ -100,9 +104,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    // セル内のボタンAction
-    func handleButton(sender: UIButton, event: UIEvent) {
-        // タップ位置からindexPathを求める？
+    // カスタムセル内のいいねボタン
+    func handleLikeButton(sender: UIButton, event: UIEvent) {
+        
+        // タップ位置からindexPathを求める
         let touch = event.allTouches()?.first
         let point = touch!.locationInView(self.tableView)
         let indexPath = tableView.indexPathForRowAtPoint(point)
@@ -142,4 +147,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
+    // カスタムセル内のコメントボタン
+    func handleCommentButton(sender: UIButton, event: UIEvent) {
+        
+        // タップ位置からindexPathを求める
+        let touch = event.allTouches()?.first
+        let point = touch!.locationInView(self.tableView)
+        let indexPath = tableView.indexPathForRowAtPoint(point)
+        
+        let postData = postArray[indexPath!.row]
+        
+        
+        let commentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Comment") as! CommentViewController
+        commentViewController.post_id = postData.id
+        self.presentViewController(commentViewController, animated: true, completion: nil) // モーダルで表示
+    }
 }

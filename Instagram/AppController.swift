@@ -25,7 +25,7 @@ class AppController: NSObject {
     }
     
     func openModal(controller: UIViewController, name: String) {
-        let vc = controller.storyboard?.instantiateViewControllerWithIdentifier(name)
+        let vc = controller.storyboard?.instantiateViewControllerWithIdentifier(name) // as! は不要？
         controller.presentViewController(vc!, animated: true, completion: nil)
     }
     

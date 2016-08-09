@@ -1,8 +1,8 @@
 //
-//  PostViewController.swift
+//  CommentViewController.swift
 //  Instagram
 //
-//  Created by macpc on 2016/07/21.
+//  Created by macpc on 2016/08/09.
 //  Copyright © 2016年 hiroshi.ohara. All rights reserved.
 //
 
@@ -11,31 +11,28 @@ import Firebase
 import FirebaseDatabase
 import SVProgressHUD
 
-class PostViewController: UIViewController {
-
-    var image: UIImage!
+class CommentViewController: UIViewController {
     
-    @IBOutlet weak var imageVew: UIImageView!
-    @IBOutlet weak var textField: UITextField!
+    var post_id: String!
 
+    @IBOutlet weak var commentTextView: UITextView!
+    
     @IBAction func handlePostButton(sender: AnyObject) {
         
         // どこに保存？
-        let postRef = FIRDatabase.database().reference().child(CommonConst.PostPATH)
-        
-        let imageData = UIImageJPEGRepresentation(imageVew.image!, 0.5)
+        let commentRef = FIRDatabase.database().reference().child(CommonConst.CommentPATH)
         
         let name = AppController().getDisplayName() // その時のユーザー名
         
         let time = NSDate.timeIntervalSinceReferenceDate() // 現在時刻
         
-        let postData = [
-            "caption": textField.text!,
-            "image": imageData!.base64EncodedStringWithOptions(.Encoding64CharacterLineLength), // テキストで保存
+        let commentData = [
+            "body": commentTextView.text!,
             "name": name,
+            "post_id": post_id,
             "time": time
         ]
-        postRef.childByAutoId().setValue(postData)
+        commentRef.childByAutoId().setValue(commentData)
         
         SVProgressHUD.showSuccessWithStatus("投稿しました")
         
@@ -48,13 +45,12 @@ class PostViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // 背景タップ
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
 
-        // 受け取った画像をImageViewに表示
-        imageVew.image = image
+        print(post_id)
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,9 +58,9 @@ class PostViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
     func dismissKeyboard() {
         view.endEditing(true)
     }
+    
 
 }

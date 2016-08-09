@@ -384,6 +384,89 @@
             </objects>
             <point key="canvasLocation" x="1015" y="992"/>
         </scene>
+        <!--Comment View Controller-->
+        <scene sceneID="KoU-3T-ccq">
+            <objects>
+                <viewController storyboardIdentifier="Comment" id="Dp4-5S-6Oq" customClass="CommentViewController" customModule="Instagram" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JK5-iY-nbw"/>
+                        <viewControllerLayoutGuide type="bottom" id="DaJ-gV-tkU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HCc-TX-sFH">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uM-Ho-MY8">
+                                <rect key="frame" x="20" y="40" width="68" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbv-Af-ENa">
+                                <rect key="frame" x="20" y="71" width="560" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="3za-w0-g1x"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuC-qI-zPW" customClass="ButtonCustom" customModule="Instagram" customModuleProvider="target">
+                                <rect key="frame" x="150" y="381" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="fOR-lF-KAj"/>
+                                    <constraint firstAttribute="height" constant="40" id="rjJ-dc-Nml"/>
+                                </constraints>
+                                <state key="normal" title="キャンセル">
+                                    <color key="titleColor" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.93333333330000001" green="0.50588235290000005" blue="0.28627450980000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="handleCancelButton:" destination="Dp4-5S-6Oq" eventType="touchUpInside" id="hdW-G2-1Nd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-GA-M5F">
+                                <rect key="frame" x="150" y="331" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="0kr-Bb-gWu"/>
+                                </constraints>
+                                <state key="normal" title="投稿" backgroundImage="btn"/>
+                                <connections>
+                                    <action selector="handlePostButton:" destination="Dp4-5S-6Oq" eventType="touchUpInside" id="ooh-Zq-eEn"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zuC-qI-zPW" firstAttribute="centerX" secondItem="HCc-TX-sFH" secondAttribute="centerX" id="0ci-fx-AKC"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lbv-Af-ENa" secondAttribute="trailing" id="BtX-7x-yo7"/>
+                            <constraint firstItem="6uM-Ho-MY8" firstAttribute="leading" secondItem="HCc-TX-sFH" secondAttribute="leadingMargin" id="NS9-9w-bvK"/>
+                            <constraint firstItem="zuC-qI-zPW" firstAttribute="top" secondItem="hMq-GA-M5F" secondAttribute="bottom" constant="10" id="RE8-Bw-R6t"/>
+                            <constraint firstItem="6uM-Ho-MY8" firstAttribute="top" secondItem="JK5-iY-nbw" secondAttribute="bottom" constant="20" id="VCt-bq-3OA"/>
+                            <constraint firstItem="lbv-Af-ENa" firstAttribute="top" secondItem="6uM-Ho-MY8" secondAttribute="bottom" constant="10" id="fyU-U6-QLy"/>
+                            <constraint firstItem="lbv-Af-ENa" firstAttribute="leading" secondItem="HCc-TX-sFH" secondAttribute="leadingMargin" id="hiA-pE-f8m"/>
+                            <constraint firstItem="hMq-GA-M5F" firstAttribute="centerX" secondItem="HCc-TX-sFH" secondAttribute="centerX" id="v9M-el-uTq"/>
+                            <constraint firstItem="hMq-GA-M5F" firstAttribute="top" secondItem="lbv-Af-ENa" secondAttribute="bottom" constant="20" id="vMA-7K-Z16"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="commentTextView" destination="lbv-Af-ENa" id="n5n-Zo-zgy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D6j-2h-l5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1366" y="948"/>
+        </scene>
     </scenes>
     <resources>
         <image name="btn" width="300" height="40"/>
