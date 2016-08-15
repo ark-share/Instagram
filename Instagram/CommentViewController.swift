@@ -19,7 +19,7 @@ class CommentViewController: UIViewController {
     
     @IBAction func handlePostButton(sender: AnyObject) {
         
-        // どこに保存？
+        // 保存先
         let commentRef = FIRDatabase.database().reference().child(CommonConst.CommentPATH)
         
         let name = AppController().getDisplayName() // その時のユーザー名
@@ -36,7 +36,8 @@ class CommentViewController: UIViewController {
         
         SVProgressHUD.showSuccessWithStatus("投稿しました")
         
-        UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil) // 閉じる
+//        UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil) // 閉じる
+        dismissViewControllerAnimated(true, completion: nil) // 閉じる
     }
     
     @IBAction func handleCancelButton(sender: AnyObject) {

@@ -20,10 +20,11 @@ class CommentData: NSObject {
     init(snapshot: FIRDataSnapshot, myId: String) {
         id = snapshot.key
         
-        let valueDic = snapshot.value as! [String: AnyObject] // [Key: Value]の型のこと
+        let valueDic = snapshot.value as! [String: AnyObject] // [Key: Value]の型のこと as!は、実行時エラーになる可能性がある
         
-        body = valueDic["body"] as? String
+        body = valueDic["body"] as? String // as?は、nilになる可能性がある
         name = valueDic["name"] as? String
+        post_id = valueDic["post_id"] as? String
         
         date = NSDate(timeIntervalSinceReferenceDate: valueDic["time"] as! NSTimeInterval)
     }

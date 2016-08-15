@@ -10,6 +10,13 @@ import UIKit
 
 class CommentTableViewCell: UITableViewCell {
 
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    var commentData: CommentData!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +28,22 @@ class CommentTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    
+    // 表示の時呼ばれる コメントの内容表示
+    override func layoutSubviews() {
+        
+        nameLabel.text = "\(commentData.name!)"
+        bodyLabel.text = "\(commentData.body!)"
+        
+        let formatter = NSDateFormatter()
+        formatter.locale = NSLocale(localeIdentifier: "ja_JP")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let dateString:String = formatter.stringFromDate(commentData.date!)
+        dateLabel.text = dateString
+        
+        
+        super.layoutSubviews()
+    }
+
 }

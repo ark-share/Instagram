@@ -20,8 +20,14 @@ class AppController: NSObject {
     }
     func getDisplayName() -> String {
         let ud = NSUserDefaults.standardUserDefaults()
-        let name = ud.objectForKey(CommonConst.DisplayNameKey) as! String
-        return name
+        
+        // NSUserDefaultsにデータがないまま as!で値をとるとエラーになるみたい。
+        // そのためas? で値を取ってからnilチェックしてみる
+        let name = ud.objectForKey(CommonConst.DisplayNameKey) as? String
+        if name != nil {
+            return name!
+        }
+        return ""
     }
     
     func openModal(controller: UIViewController, name: String) {

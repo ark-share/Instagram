@@ -20,6 +20,9 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
 
         // Do any additional setup after loading the view.
         let nib = UINib(nibName: "PostTableViewCell", bundle: nil) // Xibファイルの名前
@@ -84,8 +87,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // セルを取得してデータ設定
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostTableViewCell
         cell.postData = postArray[indexPath.row]
-        // セルのActionをコード上で設定する action:"handleButton:event:"
-//        cell.likeButton.addTarget(self,  action:"handleButton:event:", forControlEvents: UIControlEvents.TouchUpInside)
         
         // いいねアクションを設定する
         cell.likeButton.addTarget(self, action: #selector(HomeViewController.handleLikeButton(_:event:)), forControlEvents:  UIControlEvents.TouchUpInside)
@@ -99,7 +100,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension // セルの高さを自動で変更する
     }
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) // 選択状態を解除するだけ
     }
     

@@ -42,7 +42,7 @@ class PostData: NSObject {
             }
         }
 
-        date = NSDate(timeIntervalSinceReferenceDate: valueDic["time"] as! NSTimeInterval) // self.いらないんでは
+        date = NSDate(timeIntervalSinceReferenceDate: valueDic["time"] as! NSTimeInterval)
     }
     
 }
