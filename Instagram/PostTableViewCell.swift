@@ -43,7 +43,12 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
             // CommentDataにデータを設定する
             if let uid = FIRAuth.auth()?.currentUser?.uid {
                 let commentData = CommentData(snapshot: snapshot, myId: uid)
-                self.commentArray.insert(commentData, atIndex: 0)
+                
+                // 条件付き
+                if self.postData.id == commentData.post_id {
+                    self.commentArray.insert(commentData, atIndex: 0)
+                    print(commentData.body)
+                }
                 
                 self.tableView.reloadData() // テーブル再表示
             }
@@ -65,26 +70,29 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     // 表示の時呼ばれる
     override func layoutSubviews() {
     
-        postImageView.image = postData.image!
-        captionLabel.text = "\(postData.name!) : \(postData.caption!)"
-        
-        let likeNumber = postData.likes.count
-        likeLabel.text = "\(likeNumber)"
-        
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "ja_JP")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
-        let dateString:String = formatter.stringFromDate(postData.date!)
-        dateLabel.text = dateString
-        
-        if postData.isLiked {
-            let buttonImage = UIImage(named: "like_exist")
-            likeButton.setImage(buttonImage, forState: UIControlState.Normal)
-        }
-        else {
-            let buttonImage = UIImage(named: "like_none")
-            likeButton.setImage(buttonImage, forState: UIControlState.Normal)
+        if postData != nil {
+            postImageView.image = postData.image!
+            captionLabel.text = "\(postData.name!) : \(postData.caption!)"
+            
+            
+            let likeNumber = postData.likes.count
+            likeLabel.text = "\(likeNumber)"
+            
+            let formatter = NSDateFormatter()
+            formatter.locale = NSLocale(localeIdentifier: "ja_JP")
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            
+            let dateString:String = formatter.stringFromDate(postData.date!)
+            dateLabel.text = dateString
+            
+            if postData.isLiked {
+                let buttonImage = UIImage(named: "like_exist")
+                likeButton.setImage(buttonImage, forState: UIControlState.Normal)
+            }
+            else {
+                let buttonImage = UIImage(named: "like_none")
+                likeButton.setImage(buttonImage, forState: UIControlState.Normal)
+            }
         }
         
         super.layoutSubviews()
@@ -96,7 +104,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentArray.count
     }
-    // セルの内容を返す　呼び出されない？？
+    // セルの内容を返す　画面に表示されないと呼び出されない？？
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // セルを取得してデータ設定
@@ -109,6 +117,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension // セルの高さを自動で変更する
     }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) // 選択状態を解除するだけ
     }

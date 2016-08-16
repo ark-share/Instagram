@@ -27,6 +27,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // Do any additional setup after loading the view.
         let nib = UINib(nibName: "PostTableViewCell", bundle: nil) // Xibファイルの名前
         tableView.registerNib(nib, forCellReuseIdentifier: "Cell")
+        tableView.estimatedRowHeight = 50.0
         tableView.rowHeight = UITableViewAutomaticDimension // cellの高さは自動
         
         // postsに要素が追加されたらクロージャ呼び出す
@@ -84,6 +85,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     // セルの内容を返す
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
         // セルを取得してデータ設定
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! PostTableViewCell
         cell.postData = postArray[indexPath.row]
@@ -98,7 +100,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension // セルの高さを自動で変更する
+        return UITableViewAutomaticDimension // セルの高さを自動で変更する ここがコメント欄が出ない原因？？ >heightForRowAtIndexPathを使う
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 1000
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) // 選択状態を解除するだけ
