@@ -35,7 +35,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         
         let nib = UINib(nibName: "CommentTableViewCell", bundle: nil) // Xibファイルの名前
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentCell")
-        tableView.rowHeight = UITableViewAutomaticDimension // cellの高さは自動
+        //tableView.rowHeight = UITableViewAutomaticDimension // cellの高さは自動
         
         // commentsに要素が追加されたらクロージャ呼び出す
         FIRDatabase.database().reference().child(CommonConst.CommentPATH).observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -98,7 +98,6 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         super.layoutSubviews()
     }
     
-    
     // コメントTable
     // delegate
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,6 +116,9 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension // セルの高さを自動で変更する
     }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableViewAutomaticDimension // 実際の高さ
+//    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) // 選択状態を解除するだけ
