@@ -116,9 +116,9 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension // セルの高さを自動で変更する
     }
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return UITableViewAutomaticDimension // 実際の高さ
-//    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 200 // UITableViewAutomaticDimension // 実際の高さ
+    }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true) // 選択状態を解除するだけ

@@ -32,16 +32,17 @@ class CommentTableViewCell: UITableViewCell {
     // 表示の時呼ばれる コメントの内容表示
     override func layoutSubviews() {
         
-        nameLabel.text = "\(commentData.name!)"
-        bodyLabel.text = "\(commentData.body!)"
-        
-        let formatter = NSDateFormatter()
-        formatter.locale = NSLocale(localeIdentifier: "ja_JP")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        
-        let dateString:String = formatter.stringFromDate(commentData.date!)
-        dateLabel.text = dateString
-        
+        if commentData != nil {
+            nameLabel.text = "\(commentData.name!)"
+            bodyLabel.text = "\(commentData.body!)"
+            
+            let formatter = NSDateFormatter()
+            formatter.locale = NSLocale(localeIdentifier: "ja_JP")
+            formatter.dateFormat = "yyyy-MM-dd HH:mm"
+            
+            let dateString:String = formatter.stringFromDate(commentData.date!)
+            dateLabel.text = dateString
+        }
         
         super.layoutSubviews()
     }

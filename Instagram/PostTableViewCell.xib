@@ -61,7 +61,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <state key="normal" title="コメントする" backgroundImage="btn"/>
                     </button>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bLJ-DD-0Vx">
+                    <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" pagingEnabled="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bLJ-DD-0Vx">
                         <rect key="frame" x="8" y="504" width="395" height="197"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </tableView>
