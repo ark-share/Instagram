@@ -40,19 +40,20 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         // commentsに要素が追加されたらクロージャ呼び出す
         FIRDatabase.database().reference().child(CommonConst.CommentPATH).observeEventType(.ChildAdded, withBlock: { snapshot in
             
-            // CommentDataにデータを設定する
-            if let uid = FIRAuth.auth()?.currentUser?.uid {
-                let commentData = CommentData(snapshot: snapshot, myId: uid)
-                
-                // 条件付き
-                if self.postData.id == commentData.post_id {
-                    self.commentArray.insert(commentData, atIndex: 0)
-                    print(commentData.body)
+            if self.postData != nil {
+                // CommentDataにデータを設定する
+                if let uid = FIRAuth.auth()?.currentUser?.uid {
+                    let commentData = CommentData(snapshot: snapshot, myId: uid)
+                    
+                    // 条件付き
+                    if self.postData.id == commentData.post_id {
+                        self.commentArray.insert(commentData, atIndex: 0)
+                        print(commentData.body)
+                    }
+                    
+                    self.tableView.reloadData() // テーブル再表示
                 }
-                
-                self.tableView.reloadData() // テーブル再表示
             }
-            
         })
 
         // 変更削除は省く

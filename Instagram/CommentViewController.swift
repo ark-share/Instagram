@@ -14,7 +14,9 @@ import SVProgressHUD
 class CommentViewController: UIViewController {
     
     var post_id: String!
-
+    var selectedImage: UIImage! // 元記事の画像
+    
+    @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var commentTextView: UITextView!
     
     @IBAction func handlePostButton(sender: AnyObject) {
@@ -50,8 +52,8 @@ class CommentViewController: UIViewController {
         // 背景タップ
         let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
-
-        print(post_id)
+        
+        self.postImageView.image = self.selectedImage
     }
 
     override func didReceiveMemoryWarning() {

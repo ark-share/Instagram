@@ -62,10 +62,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 self.postArray.removeAtIndex(index)
                 self.postArray.insert(postData, atIndex: index)
                 
-                //self.tableView.reloadData() // テーブル再表示
                 // 該当のセルだけ更新
-                let indexPath = NSIndexPath(forRow: index, inSection: 0)
-                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+//                let indexPath = NSIndexPath(forRow: index, inSection: 0)
+//                self.tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.None)
+                // コメント欄がずれるので、セルは更新せず、いいね時にいいねボタンと数値だけ更新する
             }
             
         })
@@ -133,10 +133,23 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     }
                 }
                 postData.likes.removeAtIndex(index)
+                SVProgressHUD.showSuccessWithStatus("いいね！を取消しました")
+                
+                // いいねボタンだけを更新？？できた　×「dequeueReusableCellWithIdentifier」◯「cellForRowAtIndexPath」
+                let cell = tableView.cellForRowAtIndexPath(indexPath!) as! PostTableViewCell
+                let buttonImage = UIImage(named: "like_none")
+                cell.likeButton.setImage(buttonImage, forState: UIControlState.Normal)
+                cell.likeLabel.text = String(postData.likes.count) // -1
             }
             else {
                 postData.likes.append(uid)
                 SVProgressHUD.showSuccessWithStatus("いいね！しました")
+                
+                // いいねボタンだけを更新
+                let cell = tableView.cellForRowAtIndexPath(indexPath!) as! PostTableViewCell
+                let buttonImage = UIImage(named: "like_exist")
+                cell.likeButton.setImage(buttonImage, forState: UIControlState.Normal)
+                cell.likeLabel.text = String(postData.likes.count) // +1
             }
             
             let imageString = postData.imageString
@@ -163,9 +176,10 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let postData = postArray[indexPath!.row]
         
-        
         let commentViewController = self.storyboard?.instantiateViewControllerWithIdentifier("Comment") as! CommentViewController
         commentViewController.post_id = postData.id
+        commentViewController.selectedImage = postData.image!
+        
         self.presentViewController(commentViewController, animated: true, completion: nil) // モーダルで表示
     }
 }

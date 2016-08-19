@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -393,13 +394,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="コメント" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6uM-Ho-MY8">
-                                <rect key="frame" x="20" y="40" width="68" height="21"/>
+                                <rect key="frame" x="20" y="180" width="68" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lbv-Af-ENa">
-                                <rect key="frame" x="20" y="71" width="560" height="240"/>
+                                <rect key="frame" x="20" y="211" width="560" height="240"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="3za-w0-g1x"/>
@@ -408,7 +409,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zuC-qI-zPW" customClass="ButtonCustom" customModule="Instagram" customModuleProvider="target">
-                                <rect key="frame" x="150" y="381" width="300" height="40"/>
+                                <rect key="frame" x="150" y="521" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="fOR-lF-KAj"/>
                                     <constraint firstAttribute="height" constant="40" id="rjJ-dc-Nml"/>
@@ -432,7 +433,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hMq-GA-M5F">
-                                <rect key="frame" x="150" y="331" width="300" height="40"/>
+                                <rect key="frame" x="150" y="471" width="300" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="0kr-Bb-gWu"/>
                                 </constraints>
@@ -441,22 +442,39 @@
                                     <action selector="handlePostButton:" destination="Dp4-5S-6Oq" eventType="touchUpInside" id="ooh-Zq-eEn"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-Np-22A">
+                                <rect key="frame" x="20" y="40" width="120" height="120"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1Hq-Np-22A" secondAttribute="height" multiplier="1:1" id="iQ4-s4-O4n"/>
+                                    <constraint firstAttribute="width" constant="120" id="prS-VW-Xcg"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zuC-qI-zPW" firstAttribute="centerX" secondItem="HCc-TX-sFH" secondAttribute="centerX" id="0ci-fx-AKC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lbv-Af-ENa" secondAttribute="trailing" id="BtX-7x-yo7"/>
+                            <constraint firstItem="1Hq-Np-22A" firstAttribute="leading" secondItem="HCc-TX-sFH" secondAttribute="leadingMargin" id="EFF-L8-5IX"/>
+                            <constraint firstItem="6uM-Ho-MY8" firstAttribute="top" secondItem="1Hq-Np-22A" secondAttribute="bottom" constant="20" id="EVI-XF-7TO"/>
                             <constraint firstItem="6uM-Ho-MY8" firstAttribute="leading" secondItem="HCc-TX-sFH" secondAttribute="leadingMargin" id="NS9-9w-bvK"/>
                             <constraint firstItem="zuC-qI-zPW" firstAttribute="top" secondItem="hMq-GA-M5F" secondAttribute="bottom" constant="10" id="RE8-Bw-R6t"/>
                             <constraint firstItem="6uM-Ho-MY8" firstAttribute="top" secondItem="JK5-iY-nbw" secondAttribute="bottom" constant="20" id="VCt-bq-3OA"/>
+                            <constraint firstItem="1Hq-Np-22A" firstAttribute="top" secondItem="JK5-iY-nbw" secondAttribute="bottom" constant="20" id="Zty-V6-pYw"/>
                             <constraint firstItem="lbv-Af-ENa" firstAttribute="top" secondItem="6uM-Ho-MY8" secondAttribute="bottom" constant="10" id="fyU-U6-QLy"/>
                             <constraint firstItem="lbv-Af-ENa" firstAttribute="leading" secondItem="HCc-TX-sFH" secondAttribute="leadingMargin" id="hiA-pE-f8m"/>
                             <constraint firstItem="hMq-GA-M5F" firstAttribute="centerX" secondItem="HCc-TX-sFH" secondAttribute="centerX" id="v9M-el-uTq"/>
                             <constraint firstItem="hMq-GA-M5F" firstAttribute="top" secondItem="lbv-Af-ENa" secondAttribute="bottom" constant="20" id="vMA-7K-Z16"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="VCt-bq-3OA"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="commentTextView" destination="lbv-Af-ENa" id="n5n-Zo-zgy"/>
+                        <outlet property="postImageView" destination="1Hq-Np-22A" id="Tpz-a8-HSb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D6j-2h-l5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
