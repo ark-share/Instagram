@@ -47,8 +47,10 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
                     
                     // 条件付き
                     if self.postData.id == commentData.post_id {
+                        //self.commentArray.insert(commentData, atIndex: 0) x post_idごとに違う配列に格納しないといけないかも？＞コメントが重複して出てしまう？
+                        //print("\(commentData.post_id!) >> \(commentData.body!)")
+                        
                         self.commentArray.insert(commentData, atIndex: 0)
-                        print(commentData.body)
                     }
                     
                     self.tableView.reloadData() // テーブル再表示
@@ -104,12 +106,14 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentArray.count
     }
-    // セルの内容を返す　画面に表示されないと呼び出されない？？
+    // セルの内容を返す
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // セルを取得してデータ設定
         let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentTableViewCell
         cell.commentData = commentArray[indexPath.row]
+        
+        print(indexPath.row)
         
         cell.layoutIfNeeded()
         return cell
