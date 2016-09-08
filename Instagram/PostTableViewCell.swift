@@ -26,7 +26,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     
     var commentArray: [CommentData] = [] // カスタムTableViewCellでは1件の箱。Tableではそれを複数保持
     
-    // awakeFromNibでは初期化系のことはやらない方がいいみたい。ここでのCellごとに呼ばれるわけではない？
+    // awakeFromNibでは初期化系のことはやらない方がいいみたい
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -74,15 +74,14 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
                 likeButton.setImage(buttonImage, forState: UIControlState.Normal)
             }
             
-            
             FIRDatabase.database().reference().child(CommonConst.PostPATH+"/"+postData.id!+"/"+CommonConst.CommentPATH).observeEventType(.ChildAdded, withBlock: { snapshot in
+                
+                //self.commentArray = [] // あらかじめリセット　>惜しい。一番最後のコメントしか表示されなくなった
                 
                 if self.postData != nil {
                     
                     // CommentDataにデータを設定する
                     //if let uid = FIRAuth.auth()?.currentUser?.uid { // 自分の投稿をハイライトしたいとかないならauthは不要
-                    
-                    // わざわざpost_idで照らしあわせる必要はない　＞firebaseに直接参照できる
                     let commentData = CommentData(snapshot: snapshot) //myId: uid
                     self.commentArray.insert(commentData, atIndex: 0)
                     
@@ -91,6 +90,11 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
                 }
                 
             })
+            
+            // layoutSubviewでデータを取るがcommentArrayのリセットも必要　layoutSubviews内ならどこでも初期化可能
+            self.commentArray = [] // あらかじめリセット
+            
+
         }
         
         super.layoutSubviews()
@@ -103,10 +107,12 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     }
     // セルの内容を返す
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+
         // セルを取得してデータ設定
         let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentTableViewCell
         cell.commentData = commentArray[indexPath.row]
+        
+        //tableView.reloadData() // cellForRowAtIndexPath内は表示前に必ず呼び出される。前のCellが残ったままなのでここでテーブル再表示?>２つ目以降のコメントが表示されなくなってしまった
         
         cell.layoutIfNeeded()
         return cell
