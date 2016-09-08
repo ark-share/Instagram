@@ -94,7 +94,6 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         // コメントアクション
         cell.commentButton.addTarget(self, action: #selector(HomeViewController.handleCommentButton(_:event:)), forControlEvents:  UIControlEvents.TouchUpInside)
         
-        
         cell.layoutIfNeeded()
         return cell
     }

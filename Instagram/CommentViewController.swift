@@ -21,8 +21,8 @@ class CommentViewController: UIViewController {
     
     @IBAction func handlePostButton(sender: AnyObject) {
         
-        // 保存先
-        let commentRef = FIRDatabase.database().reference().child(CommonConst.CommentPATH)
+        // コメントの保存先はorders以下にする
+        let commentRef = FIRDatabase.database().reference().child(CommonConst.PostPATH+"/"+post_id+"/"+CommonConst.CommentPATH)
         
         let name = AppController().getDisplayName() // その時のユーザー名
         
@@ -31,7 +31,6 @@ class CommentViewController: UIViewController {
         let commentData = [
             "body": commentTextView.text!,
             "name": name,
-            "post_id": post_id,
             "time": time
         ]
         commentRef.childByAutoId().setValue(commentData)

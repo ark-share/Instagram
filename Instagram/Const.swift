@@ -10,7 +10,7 @@ import Foundation
 
 struct CommonConst {
     static let PostPATH = "posts"
-    static let CommentPATH = "commments"
+    static let CommentPATH = "comments"
     static let DisplayNameKey = "DISPLAYNAME"
     
     // Adobe Creative SDK

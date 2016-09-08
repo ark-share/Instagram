@@ -26,6 +26,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     
     var commentArray: [CommentData] = [] // カスタムTableViewCellでは1件の箱。Tableではそれを複数保持
     
+    // awakeFromNibでは初期化系のことはやらない方がいいみたい。ここでのCellごとに呼ばれるわけではない？
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -35,35 +36,11 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         
         let nib = UINib(nibName: "CommentTableViewCell", bundle: nil) // Xibファイルの名前
         tableView.registerNib(nib, forCellReuseIdentifier: "CommentCell")
-        //tableView.rowHeight = UITableViewAutomaticDimension // cellの高さは自動
+        tableView.rowHeight = UITableViewAutomaticDimension // cellの高さは自動
         
-        // commentsに要素が追加されたらクロージャ呼び出す
-        FIRDatabase.database().reference().child(CommonConst.CommentPATH).observeEventType(.ChildAdded, withBlock: { snapshot in
-            
-            if self.postData != nil {
-                // CommentDataにデータを設定する
-                if let uid = FIRAuth.auth()?.currentUser?.uid {
-                    let commentData = CommentData(snapshot: snapshot, myId: uid)
-                    
-                    // 条件付き
-                    if self.postData.id == commentData.post_id {
-                        //self.commentArray.insert(commentData, atIndex: 0) x post_idごとに違う配列に格納しないといけないかも？＞コメントが重複して出てしまう？
-                        //print("\(commentData.post_id!) >> \(commentData.body!)")
-                        
-                        self.commentArray.insert(commentData, atIndex: 0)
-                    }
-                    
-                    self.tableView.reloadData() // テーブル再表示
-                }
-            }
-        })
-
-        // 変更削除は省く
-        // postsが変更されたら 削除＞その後追加
-//        FIRDatabase.database().reference().child(CommonConst.PostPATH).observeEventType(.ChildChanged, withBlock: { snapshot in
-//        })
+        // commentsに要素が追加されたらクロージャ呼び出す ＞ここだとpostDataがnilになってデータが取れないので、layoutSubviewsで呼び出すように変更
     }
-
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -75,7 +52,7 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
     
         if postData != nil {
             postImageView.image = postData.image!
-            captionLabel.text = "\(postData.name!) : \(postData.caption!)"
+            captionLabel.text = "\(postData.name!) : \(postData.caption!) : [\(postData.id!)]"
             
             
             let likeNumber = postData.likes.count
@@ -96,6 +73,24 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
                 let buttonImage = UIImage(named: "like_none")
                 likeButton.setImage(buttonImage, forState: UIControlState.Normal)
             }
+            
+            
+            FIRDatabase.database().reference().child(CommonConst.PostPATH+"/"+postData.id!+"/"+CommonConst.CommentPATH).observeEventType(.ChildAdded, withBlock: { snapshot in
+                
+                if self.postData != nil {
+                    
+                    // CommentDataにデータを設定する
+                    //if let uid = FIRAuth.auth()?.currentUser?.uid { // 自分の投稿をハイライトしたいとかないならauthは不要
+                    
+                    // わざわざpost_idで照らしあわせる必要はない　＞firebaseに直接参照できる
+                    let commentData = CommentData(snapshot: snapshot) //myId: uid
+                    self.commentArray.insert(commentData, atIndex: 0)
+                    
+                    self.tableView.reloadData() // テーブル再表示
+                    //}
+                }
+                
+            })
         }
         
         super.layoutSubviews()
@@ -112,8 +107,6 @@ class PostTableViewCell: UITableViewCell, UITableViewDataSource, UITableViewDele
         // セルを取得してデータ設定
         let cell = tableView.dequeueReusableCellWithIdentifier("CommentCell", forIndexPath: indexPath) as! CommentTableViewCell
         cell.commentData = commentArray[indexPath.row]
-        
-        print(indexPath.row)
         
         cell.layoutIfNeeded()
         return cell

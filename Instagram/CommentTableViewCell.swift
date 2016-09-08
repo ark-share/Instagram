@@ -34,7 +34,7 @@ class CommentTableViewCell: UITableViewCell {
         
         if commentData != nil {
             nameLabel.text = "\(commentData.name!)"
-            bodyLabel.text = "\(commentData.body!)"
+            bodyLabel.text = "\(commentData.body!)" //  [\(commentData.post_id!)] 削除
             
             let formatter = NSDateFormatter()
             formatter.locale = NSLocale(localeIdentifier: "ja_JP")
